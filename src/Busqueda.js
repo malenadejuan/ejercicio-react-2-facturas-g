@@ -6,7 +6,7 @@ const Busqueda = () => {
       <Col className="info-listado info-listado-top text-right">
         <Form.Label>
           Buscar
-            <Form.Control sm type="text" />
+            <Form.Control type="text" />
         </Form.Label>
       </Col>
     </Row>
