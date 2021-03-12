@@ -2,19 +2,19 @@ import { Container, Row, Col } from "react-bootstrap";
 
 function App() {
   return (
-    <Container fluid as="section" className="principal fluid">
-      <Row as="header" className="cabecera">
-        <Col><h2 className="col">Listado de ingresos</h2></Col>
-      </Row>
+    <section className="principal container-fluid">
+      <header className="cabecera row">
+        <h2 className="col">Listado de ingresos</h2>
+      </header>
       <main>
-        <Row>
-          <Col className="info-listado info-listado-top text-right">
+        <div className="row">
+          <div className="info-listado info-listado-top col text-right">
             <label>
               Buscar
             <input type="text" className="form-control form-control-sm" />
             </label>
-          </Col>
-        </Row>
+          </div>
+        </div>
         <table className="listado table table-striped table-bordered table-hover">
           <thead className="thead-light">
             <tr>
@@ -51,7 +51,7 @@ function App() {
           </tfoot>
         </table>
       </main>
-    </Container >
+    </section>
   );
 }
 
