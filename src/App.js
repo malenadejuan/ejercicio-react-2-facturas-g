@@ -1,4 +1,5 @@
 import { Container, Row, Col, Form, Table } from "react-bootstrap";
+import Busqueda from "./Busqueda";
 
 function App() {
   return (
@@ -9,14 +10,7 @@ function App() {
         </Col>
       </Row>
       <main>
-        <Row>
-          <Col className="info-listado info-listado-top text-right">
-            <Form.Label>
-              Buscar
-            <Form.Control sm type="text" />
-            </Form.Label>
-          </Col>
-        </Row>
+        <Busqueda></Busqueda>
         <Table bordered hover striped className="listado">
           <thead className="thead-light">
             <tr>
