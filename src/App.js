@@ -1,21 +1,23 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Form, Table } from "react-bootstrap";
 
 function App() {
   return (
-    <section className="principal container-fluid">
-      <header className="cabecera row">
-        <h2 className="col">Listado de ingresos</h2>
-      </header>
+    <Container as="section" fluid className="principal">
+      <Row as="header" className="cabecera">
+        <Col>
+          <h2>Listado de ingresos</h2>
+        </Col>
+      </Row>
       <main>
-        <div className="row">
-          <div className="info-listado info-listado-top col text-right">
-            <label>
+        <Row>
+          <Col className="info-listado info-listado-top text-right">
+            <Form.Label>
               Buscar
-            <input type="text" className="form-control form-control-sm" />
-            </label>
-          </div>
-        </div>
-        <table className="listado table table-striped table-bordered table-hover">
+            <Form.Control sm type="text" />
+            </Form.Label>
+          </Col>
+        </Row>
+        <Table bordered hover striped className="listado">
           <thead className="thead-light">
             <tr>
               <th className="col-min">Num.</th>
@@ -49,9 +51,9 @@ function App() {
               <td colspan="2"></td>
             </tr>
           </tfoot>
-        </table>
+        </Table>
       </main>
-    </section>
+    </Container>
   );
 }
 
