@@ -1,5 +1,6 @@
 import Busqueda from "./Busqueda";
 import Filas from "./Filas";
+import CuentaFinalTotal from "./CuentaFinalTotal";
 import { Container, Row, Col, Table } from "react-bootstrap";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             </tr>
           </thead>
           <Filas></Filas>
+          <CuentaFinalTotal></CuentaFinalTotal>
         </Table>
       </main>
     </Container>
