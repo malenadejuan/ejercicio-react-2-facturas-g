@@ -1,9 +1,18 @@
 import Busqueda from "./Busqueda";
 import Filas from "./Filas";
 import CuentaFinalTotal from "./CuentaFinalTotal";
+import { useEffect, useState } from "react";
+import UrlAPI from "./UrlAPI";
 import { Container, Row, Col, Table } from "react-bootstrap";
 
 function App() {
+  const [facturas, setFacturas] = useState([]);
+  const { url: webAPI } = UrlAPI(`${process.env.REACT_APP_API_URL}`);
+  useEffect(() => {
+    if (webAPI) {
+      setFacturas(webAPI.filter(webAPI => webAPI.tipo === "ingreso"));
+    }
+  }, [webAPI]);
   return (
     <Container as="section" fluid className="principal">
       <Row as="header" className="cabecera">
