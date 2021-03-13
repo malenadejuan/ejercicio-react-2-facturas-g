@@ -6,11 +6,11 @@ import UrlAPI from "./UrlAPI";
 import { Container, Row, Col, Table } from "react-bootstrap";
 
 function App() {
-  const [facturas, setFacturas] = useState([]);
+  const [DatosNumeros, setDatosNumeros] = useState([]);
   const { url: webAPI } = UrlAPI(`${process.env.REACT_APP_API_URL}`);
   useEffect(() => {
     if (webAPI) {
-      setFacturas(webAPI.filter(webAPI => webAPI.tipo === "ingreso"));
+      setDatosNumeros(webAPI.filter(webAPI => webAPI.tipo === "ingreso"));
     }
   }, [webAPI]);
   return (
