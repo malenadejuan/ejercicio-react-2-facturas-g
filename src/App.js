@@ -7,7 +7,9 @@ import { Container, Row, Col, Table } from "react-bootstrap";
 
 function App() {
   const [DatosNumeros, setDatosNumeros] = useState([]);
-  const { url: webAPI } = UrlAPI(`${process.env.REACT_APP_API_URL}`);
+  const { DateTime } = require("luxon");
+  const NumeroIVA = (base, tipoIVA) => base * (tipoIVA / 100);
+  const { web: webAPI } = UrlAPI(`${process.env.REACT_APP_API_URL}`);
   useEffect(() => {
     if (webAPI) {
       setDatosNumeros(webAPI.filter(webAPI => webAPI.tipo === "ingreso"));
@@ -35,8 +37,11 @@ function App() {
               <th className="col-max">Vence</th>
             </tr>
           </thead>
-          <Filas></Filas>
-          <CuentaFinalTotal></CuentaFinalTotal>
+          <Filas
+            DateTime={DateTime}
+            DatosNumeros={DatosNumeros}
+            NumeroIVA={NumeroIVA} />
+          <CuentaFinalTotal />
         </Table>
       </main>
     </Container>
