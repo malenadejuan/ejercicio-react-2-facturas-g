@@ -4,8 +4,8 @@ import { DateTime } from "luxon";
 const Filas = (props) => {
   const { datos, DateTime, numeroIVA, Vencimiento, datoVencimiento } = props;
   return (
-    datos ? datos.map((factura) => (
-      <tr key={datos.id} className="factura">
+    datos && datos.map((factura) => (
+      <tr key={factura.id} className="factura">
         <td className="numero">{factura.numero}</td>
         <td className="fecha">{DateTime.fromMillis(+factura.fecha).toLocaleString()}</td>
         <td className="concepto">{factura.concepto}</td>
@@ -16,7 +16,7 @@ const Filas = (props) => {
         <td className="estado"></td>
         <td className="vencimiento"></td>
       </tr>
-    )) : < tr className="factura-dummy" />
+    ))
   );
 };
 
