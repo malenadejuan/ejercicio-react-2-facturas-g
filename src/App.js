@@ -1,12 +1,32 @@
+import { useEffect, useState } from "react";
 import Busqueda from "./Busqueda";
 import Filas from "./Filas";
 import useFetch from "./hooks/useFetch";
 import { Container, Row, Col, Table } from "react-bootstrap";
+import { DateTime } from "luxon";
 
 function App() {
   const { DateTime } = require("luxon");
   const numeroIVA = (base, tipoIVA) => base * (tipoIVA / 100);
-  const datos = useFetch(`${process.env.REACT_APP_API_URL}`);
+  const datosFacturas = useFetch(`${process.env.REACT_APP_API_URL}`);
+  const datovencimiento = (diaActual, caducidad) => {
+    if (caducidad > diaActual) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const datosDelVencimiento = (vencimiento) => {
+    const diaActual = DateTime.local();
+    const caducidad = DateTime.fromMillis(+vencimiento);
+    const otrosDias = caducidad.diff(diaActual, "days").toObject();
+    const difeterentesFechas = Math.abs(Math.trunc(otrosDias.days));
+    if (datovencimiento(diaActual, caducidad)) {
+      return `${caducidad.toLocaleString()} (faltan ${difeterentesFechas} días)`;
+    } else {
+      return `${caducidad.toLocaleString()} (hace ${difeterentesFechas} días)`;
+    }
+  };
   return (
     <Container as="section" fluid className="principal">
       <Row as="header" className="cabecera">
@@ -31,9 +51,10 @@ function App() {
           </thead>
           <tbody>
             <Filas
-              DateTime={DateTime}
-              datos={datos}
-              numeroIVA={numeroIVA} />
+              datos={datosFacturas}
+              numeroIVA={numeroIVA}
+              datovencimiento={datovencimiento}
+              datosDelVencimiento={datosDelVencimiento} />
           </tbody>
           <tfoot>
             <tr className="totales">
