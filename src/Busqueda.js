@@ -4,7 +4,6 @@ import { Row, Col } from "react-bootstrap";
 
 const Busqueda = ({ facturas }) => {
   const [busqueda, setBusqueda] = useState("");
-  const [facturasFiltradas, setFacturasFiltradas] = useState([]);
 
   const cambiarBusqueda = e => {
     setBusqueda(e.target.value);
@@ -12,7 +11,7 @@ const Busqueda = ({ facturas }) => {
 
   const buscar = e => {
     e.preventDefault();
-    console.log(facturas);
+    const resultados = facturas.filter(factura => factura.numero.includes(busqueda));
   };
 
   return (
