@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { DateTime } from "luxon";
 
-const Filas = ({ datos, DateTime, numeroIVA, Vencimiento, datoVencimiento }) => {
+const Filas = ({ datos, numeroIVA, datovencimiento, datosDelVencimiento }) => {
   return (
     datos && datos.map((factura) => (
       <tr key={factura.id} className="factura">
@@ -12,16 +12,19 @@ const Filas = ({ datos, DateTime, numeroIVA, Vencimiento, datoVencimiento }) => 
         <td><span className="cantidad-iva">{numeroIVA(factura.base, factura.tipoIva)}</span>€
           (<span className="tipo-iva">{factura.tipoIva}</span>%)</td>
         <td><span className="total">{(factura.base + numeroIVA(factura.base, factura.tipoIva)).toFixed(2)}</span>€</td>
-        <td className="estado"></td>
-        <td className="vencimiento"></td>
+        <td className={`estado ${factura.abonada ? "table-success" : "table-danger"}`}>{factura.abonada ? "Abonada" : "Pendiente"}</td>
+        <td className={`vencimiento ${(!datovencimiento(DateTime.local(), factura.vencimiento) && !factura.abonada) ? "table-danger" : "table-success"}`}>
+          {factura.abonada ? "-" : datosDelVencimiento(factura.vencimiento)}
+        </td>
       </tr>
     ))
   );
 };
 
 Filas.propTypes = {
-  DateTime: PropTypes.instanceOf(DateTime).isRequired,
   datos: PropTypes.array.isRequired,
   numeroIVA: PropTypes.func.isRequired,
+  datovencimiento: PropTypes.func.isRequired,
+  datosDelVencimiento: PropTypes.func.isRequired
 };
 export default Filas;
