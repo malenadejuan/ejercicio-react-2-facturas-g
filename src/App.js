@@ -3,10 +3,9 @@ import Busqueda from "./Busqueda";
 import Filas from "./Filas";
 import useFetch from "./hooks/useFetch";
 import { Container, Row, Col, Table } from "react-bootstrap";
-import { DateTime } from "luxon";
+const { DateTime } = require("luxon");
 
 function App() {
-  const { DateTime } = require("luxon");
   const [resultados, setResultados] = useState([]);
   const numeroIVA = (base, tipoIVA) => base * (tipoIVA / 100);
   const datosFacturas = useFetch(`${process.env.REACT_APP_API_URL}`);
