@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 
 const Busqueda = ({ facturas, setResultados }) => {
@@ -9,16 +9,15 @@ const Busqueda = ({ facturas, setResultados }) => {
     setBusqueda(e.target.value);
   };
 
-  const buscar = e => {
-    e.preventDefault();
+  useEffect(() => {
     const resultadoFinal = facturas.filter(factura => factura.numero.includes(busqueda));
     resultadoFinal.length > 0 && setResultados(resultadoFinal);
-  };
+  }, [busqueda, facturas, setResultados]);
 
   return (
     < Row >
       <Col className="info-listado info-listado-top text-right">
-        <form onSubmit={buscar}>
+        <form>
           <label htmlFor="busqueda" >Buscar</label>
           <input id="busqueda" type="text" value={busqueda} onChange={cambiarBusqueda} />
         </form>
