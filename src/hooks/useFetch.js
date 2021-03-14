@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useFetch = (url) => {
-  const [datos, setDatos] = useState(null);
+  const [datos, setDatos] = useState([]);
   useEffect(() => {
     (async () => {
       const resp = await fetch(url);

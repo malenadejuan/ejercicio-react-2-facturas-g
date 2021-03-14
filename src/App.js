@@ -45,7 +45,7 @@ function App() {
         </Col>
       </Row>
       <main>
-        <Busqueda></Busqueda>
+        <Busqueda facturas={datosFacturas}></Busqueda>
         <Table bordered hover striped className="listado">
           <thead className="thead-light">
             <tr>
@@ -68,11 +68,11 @@ function App() {
           </tbody>
           <tfoot>
             <tr className="totales">
-              <th className="text-right" colspan="3">Totales :</th>
+              <th className="text-right" sm={3}>Totales :</th>
               <td><span className="total-bases">{`${sumaTotalBase}`}</span>€</td>
               <td><span className="total-ivas">{`${sumaTotalIVA}`}</span>€</td>
               <td><span className="total-totales">{`${sumaTotalTotal}`}</span>€</td>
-              <td colspan="2"></td>
+              <td sm={2}></td>
             </tr>
           </tfoot>
         </Table>
