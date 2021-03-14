@@ -1,9 +1,15 @@
 import PropTypes from "prop-types";
 import { DateTime } from "luxon";
 
-const Filas = ({ datos, numeroIVA, datovencimiento, datosDelVencimiento }) => {
+const Filas = ({ datos, resultados, numeroIVA, datovencimiento, datosDelVencimiento }) => {
+  let datosMostrar = [];
+  if (resultados.length !== 0) {
+    datosMostrar = resultados;
+  } else {
+    datosMostrar = datos;
+  }
   return (
-    datos.length !== 0 && datos.map((factura) => (
+    datosMostrar.length !== 0 && datosMostrar.map((factura) => (
       <tr key={factura.id} className="factura">
         <td className="numero">{factura.numero}</td>
         <td className="fecha">{DateTime.fromMillis(+factura.fecha).toLocaleString()}</td>
@@ -23,6 +29,7 @@ const Filas = ({ datos, numeroIVA, datovencimiento, datosDelVencimiento }) => {
 
 Filas.propTypes = {
   datos: PropTypes.array.isRequired,
+  resultados: PropTypes.array,
   numeroIVA: PropTypes.func.isRequired,
   datovencimiento: PropTypes.func.isRequired,
   datosDelVencimiento: PropTypes.func.isRequired

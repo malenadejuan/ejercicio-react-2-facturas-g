@@ -7,6 +7,7 @@ import { DateTime } from "luxon";
 
 function App() {
   const { DateTime } = require("luxon");
+  const [resultados, setResultados] = useState([]);
   const numeroIVA = (base, tipoIVA) => base * (tipoIVA / 100);
   const datosFacturas = useFetch(`${process.env.REACT_APP_API_URL}`);
   const datovencimiento = (diaActual, caducidad) => {
@@ -45,7 +46,7 @@ function App() {
         </Col>
       </Row>
       <main>
-        <Busqueda facturas={datosFacturas}></Busqueda>
+        <Busqueda facturas={datosFacturas} resultados={resultados} setResultados={setResultados}></Busqueda>
         <Table bordered hover striped className="listado">
           <thead className="thead-light">
             <tr>
@@ -62,6 +63,7 @@ function App() {
           <tbody>
             <Filas
               datos={datosFacturas}
+              resultados={resultados}
               numeroIVA={numeroIVA}
               datovencimiento={datovencimiento}
               datosDelVencimiento={datosDelVencimiento} />
