@@ -29,10 +29,12 @@ function App() {
               <th className="col-max">Vence</th>
             </tr>
           </thead>
-          <Filas
-            DateTime={DateTime}
-            datos={datos}
-            numeroIVA={numeroIVA} />
+          <tbody>
+            <Filas
+              DateTime={DateTime}
+              datos={datos}
+              numeroIVA={numeroIVA} />
+          </tbody>
           <tfoot>
             <tr className="totales">
               <th className="text-right" colspan="3">Totales:</th>
