@@ -1,19 +1,19 @@
 import Busqueda from "./Busqueda";
 import Filas from "./Filas";
 import { useEffect, useState } from "react";
-import UrlAPI from "./UrlAPI";
+import useFetch from "./hooks/useFetch";
 import { Container, Row, Col, Table } from "react-bootstrap";
 
 function App() {
   const [DatosNumeros, setDatosNumeros] = useState([]);
   const { DateTime } = require("luxon");
   const NumeroIVA = (base, tipoIVA) => base * (tipoIVA / 100);
-  const { web: webAPI } = UrlAPI(`${process.env.REACT_APP_API_URL}`);
+  const { datos, cargando } = useFetch(`${process.env.REACT_APP_API_URL}`);
   useEffect(() => {
-    if (webAPI) {
-      setDatosNumeros(webAPI.filter(webAPI => webAPI.tipo === "ingreso"));
+    if (datos) {
+      setDatosNumeros(datos.filter(datos => datos.tipo === "ingreso"));
     }
-  }, [webAPI]);
+  }, [datos]);
   return (
     <Container as="section" fluid className="principal">
       <Row as="header" className="cabecera">

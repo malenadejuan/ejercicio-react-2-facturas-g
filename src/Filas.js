@@ -1,4 +1,4 @@
-import UrlAPI from "./UrlAPI";
+import useFetch from "./hooks/useFetch";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { DateTime } from "luxon";
