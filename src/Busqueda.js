@@ -15,14 +15,14 @@ const Busqueda = ({ facturas, setResultados }) => {
   }, [busqueda, facturas, setResultados]);
 
   return (
-    < Row >
-      <Col className="info-listado info-listado-top text-right">
-        <form>
-          <label htmlFor="busqueda" >Buscar</label>
-          <input id="busqueda" type="text" value={busqueda} onChange={cambiarBusqueda} />
-        </form>
-      </Col>
-    </Row >
+    < div className="row" >
+      <div className="info-listado info-listado-top col text-right">
+        <label>
+          Buscar
+           <input type="text" className="form-control form-control-sm" value={busqueda} onChange={cambiarBusqueda} />
+        </label>
+      </div>
+    </div>
   );
 };
 
