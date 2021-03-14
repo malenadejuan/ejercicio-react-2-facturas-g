@@ -38,15 +38,13 @@ function App() {
     }
   }, [resultados]);
   return (
-    <Container as="section" fluid className="principal">
-      <Row as="header" className="cabecera">
-        <Col>
-          <h2>Listado de ingresos</h2>
-        </Col>
-      </Row>
+    <section className="principal container-fluid">
+      <header className="cabecera row">
+        <h2 className="col">Listado de ingresos</h2>
+      </header>
       <main>
         <Busqueda facturas={datosFacturas} resultados={resultados} setResultados={setResultados}></Busqueda>
-        <Table bordered hover striped className="listado">
+        <table className="listado table table-striped table-bordered table-hover">
           <thead className="thead-light">
             <tr>
               <th className="col-min">Num.</th>
@@ -69,16 +67,16 @@ function App() {
           </tbody>
           <tfoot>
             <tr className="totales">
-              <th className="text-right" sm={3}>Totales :</th>
+              <th className="text-right" colSpan="3">Totales :</th>
               <td><span className="total-bases">{`${sumaTotalBase}`}</span>€</td>
               <td><span className="total-ivas">{`${sumaTotalIVA}`}</span>€</td>
               <td><span className="total-totales">{`${sumaTotalTotal}`}</span>€</td>
-              <td sm={2}></td>
+              <td colSpan="2"></td>
             </tr>
           </tfoot>
-        </Table>
+        </table>
       </main>
-    </Container>
+    </section>
   );
 };
 export default App;
