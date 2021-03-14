@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 
 const Filas = ({ datos, numeroIVA, datovencimiento, datosDelVencimiento }) => {
   return (
-    datos && datos.map((factura) => (
+    datos.length !== 0 && datos.map((factura) => (
       <tr key={factura.id} className="factura">
         <td className="numero">{factura.numero}</td>
         <td className="fecha">{DateTime.fromMillis(+factura.fecha).toLocaleString()}</td>
