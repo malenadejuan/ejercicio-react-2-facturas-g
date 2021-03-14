@@ -1,6 +1,5 @@
 import Busqueda from "./Busqueda";
 import Filas from "./Filas";
-import CuentaFinalTotal from "./CuentaFinalTotal";
 import { useEffect, useState } from "react";
 import UrlAPI from "./UrlAPI";
 import { Container, Row, Col, Table } from "react-bootstrap";
@@ -41,7 +40,15 @@ function App() {
             DateTime={DateTime}
             DatosNumeros={DatosNumeros}
             NumeroIVA={NumeroIVA} />
-          <CuentaFinalTotal />
+          <tfoot>
+            <tr className="totales">
+              <th className="text-right" colspan="3">Totales:</th>
+              <td><span className="total-bases"></span>€</td>
+              <td><span className="total-ivas"></span>€</td>
+              <td><span className="total-totales"></span>€</td>
+              <td colspan="2"></td>
+            </tr>
+          </tfoot>
         </Table>
       </main>
     </Container>
