@@ -31,7 +31,7 @@ function App() {
   const [sumaTotalIVA, setSumaTotalIVA] = useState(0);
   const [sumaTotalTotal, setSumaTotalTotal] = useState(0);
   useEffect(() => {
-    if (datosFacturas) {
+    if (datosFacturas.length > 0) {
       setSumaTotalBase(datosFacturas.map(datos => datos.base).reduce((acc, base) => acc + base));
       setSumaTotalIVA(datosFacturas.map(datos => datos.base * (datos.tipoIva / 100)).reduce((acc, iva) => acc + iva));
       setSumaTotalTotal(Math.round(datosFacturas.map(datos => datos.base + datos.base * (datos.tipoIva / 100)).reduce((acc, total) => acc + total) * 100) / 100);
