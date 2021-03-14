@@ -1,19 +1,12 @@
 import Busqueda from "./Busqueda";
 import Filas from "./Filas";
-import { useEffect, useState } from "react";
 import useFetch from "./hooks/useFetch";
 import { Container, Row, Col, Table } from "react-bootstrap";
 
 function App() {
-  const [DatosNumeros, setDatosNumeros] = useState([]);
   const { DateTime } = require("luxon");
-  const NumeroIVA = (base, tipoIVA) => base * (tipoIVA / 100);
-  const { datos, cargando } = useFetch(`${process.env.REACT_APP_API_URL}`);
-  useEffect(() => {
-    if (datos) {
-      setDatosNumeros(datos.filter(datos => datos.tipo === "ingreso"));
-    }
-  }, [datos]);
+  const numeroIVA = (base, tipoIVA) => base * (tipoIVA / 100);
+  const datos = useFetch(`${process.env.REACT_APP_API_URL}`);
   return (
     <Container as="section" fluid className="principal">
       <Row as="header" className="cabecera">
@@ -38,8 +31,8 @@ function App() {
           </thead>
           <Filas
             DateTime={DateTime}
-            DatosNumeros={DatosNumeros}
-            NumeroIVA={NumeroIVA} />
+            datos={datos}
+            numeroIVA={numeroIVA} />
           <tfoot>
             <tr className="totales">
               <th className="text-right" colspan="3">Totales:</th>
