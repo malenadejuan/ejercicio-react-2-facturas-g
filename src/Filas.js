@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
 import { DateTime } from "luxon";
 
-const Filas = (props) => {
-  const { datos, DateTime, numeroIVA, Vencimiento, datoVencimiento } = props;
+const Filas = ({ datos, DateTime, numeroIVA, Vencimiento, datoVencimiento }) => {
   return (
     datos && datos.map((factura) => (
       <tr key={factura.id} className="factura">
