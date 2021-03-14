@@ -27,6 +27,16 @@ function App() {
       return `${caducidad.toLocaleString()} (hace ${difeterentesFechas} días)`;
     }
   };
+  const [sumaTotalBase, setSumaTotalBase] = useState(0);
+  const [sumaTotalIVA, setSumaTotalIVA] = useState(0);
+  const [sumaTotalTotal, setSumaTotalTotal] = useState(0);
+  useEffect(() => {
+    if (datosFacturas) {
+      setSumaTotalBase(datosFacturas.map(datos => datos.base).reduce((acc, base) => acc + base));
+      setSumaTotalIVA(datosFacturas.map(datos => datos.base * (datos.tipoIva / 100)).reduce((acc, iva) => acc + iva));
+      setSumaTotalTotal(Math.round(datosFacturas.map(datos => datos.base + datos.base * (datos.tipoIva / 100)).reduce((acc, total) => acc + total) * 100) / 100);
+    }
+  }, [datosFacturas]);
   return (
     <Container as="section" fluid className="principal">
       <Row as="header" className="cabecera">
@@ -58,10 +68,10 @@ function App() {
           </tbody>
           <tfoot>
             <tr className="totales">
-              <th className="text-right" sm={3}>Totales:</th>
-              <td><span className="total-bases"></span>€</td>
-              <td><span className="total-ivas"></span>€</td>
-              <td><span className="total-totales"></span>€</td>
+              <th className="text-right" sm={3}>Totales :</th>
+              <td><span className="total-bases">{`${sumaTotalBase}`}</span>€</td>
+              <td><span className="total-ivas">{`${sumaTotalIVA}`}</span>€</td>
+              <td><span className="total-totales">{`${sumaTotalTotal}`}</span>€</td>
               <td sm={2}></td>
             </tr>
           </tfoot>
@@ -69,6 +79,5 @@ function App() {
       </main>
     </Container>
   );
-}
-
+};
 export default App;
